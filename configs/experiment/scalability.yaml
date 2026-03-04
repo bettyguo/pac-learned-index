@@ -1,0 +1,11 @@
+experiment:
+  name: scalability
+  description: Measure how performance scales with dataset size
+  datasets: [amzn, face, osm, wiki]
+  indexes:
+    - {name: pgm, error_bound: 64}
+  sample_sizes: [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000, 200000000]
+  seeds: [42, 123, 256, 314, 512]
+  num_runs: 5
+  warmup_runs: 3
+  metrics: [prediction_error_max, prediction_error_avg, segment_count, memory_mb, build_time_s, query_latency_p50]

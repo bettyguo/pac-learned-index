@@ -1,0 +1,7 @@
+workload:
+  name: olap
+  type: range_query
+  num_queries: 1000000
+  distribution: zipfian
+  zipf_alpha: 0.99
+  range_size: 100

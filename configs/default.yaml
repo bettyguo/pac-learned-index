@@ -1,0 +1,21 @@
+project:
+  name: pac_index
+  version: "1.0.0"
+data:
+  sosd_dir: benchmarks/data
+  datasets: [amzn, face, osm, wiki]
+index:
+  type: pgm
+  error_bound: 64
+experiment:
+  seeds: [42, 123, 256, 314, 512, 628, 729, 841, 953, 1024]
+  num_runs: 10
+  warmup_runs: 3
+  sample_sizes: [10000, 100000, 1000000, 10000000, 100000000]
+output:
+  results_dir: results
+  figures_dir: results/figures
+  tables_dir: results/tables
+  statistics_dir: results/statistics
+logging:
+  level: INFO

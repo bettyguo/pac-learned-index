@@ -1,0 +1,14 @@
+experiment:
+  name: microbenchmark
+  description: Low-level performance measurements
+  benchmarks:
+    - name: cv_estimation
+      gap_sample_sizes: [1000, 5000, 10000, 50000, 100000]
+    - name: segment_computation
+      datasets: [amzn, face, osm, wiki]
+      error_bounds: [16, 32, 64, 128, 256, 512]
+    - name: bound_tightness
+      datasets: [amzn, face, osm, wiki]
+      sample_fractions: [0.001, 0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
+  seeds: [42, 123, 256, 314, 512, 628, 729, 841, 953, 1024]
+  num_runs: 10

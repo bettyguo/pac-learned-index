@@ -1,0 +1,18 @@
+project:
+  name: pac_index_test
+  version: "1.0.0"
+data:
+  sosd_dir: benchmarks/data
+  datasets: [amzn]
+index:
+  type: pgm
+  error_bound: 128
+experiment:
+  seeds: [42]
+  num_runs: 1
+  warmup_runs: 0
+  sample_sizes: [1000, 5000]
+output:
+  results_dir: results/test
+logging:
+  level: DEBUG

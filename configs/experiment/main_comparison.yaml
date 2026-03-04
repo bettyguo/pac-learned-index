@@ -1,0 +1,29 @@
+experiment:
+  name: main_comparison
+  description: Compare learned indexes vs traditional baselines on all SOSD datasets
+  datasets: [amzn, face, osm, wiki]
+  indexes:
+    learned:
+      - {name: pgm, error_bounds: [16, 32, 64, 128, 256]}
+      - {name: alex, config: default}
+      - {name: lipp, config: default}
+      - {name: rmi, levels: 2, branching_factor: 100}
+      - {name: radixspline, radix_bits: 18, max_error: 64}
+    traditional:
+      - {name: btree_stx}
+      - {name: art}
+      - {name: hot}
+      - {name: fast}
+  metrics:
+    - prediction_error_max
+    - prediction_error_avg
+    - query_latency_p50
+    - query_latency_p95
+    - query_latency_p99
+    - memory_mb
+    - build_time_s
+  sample_sizes: [10000, 100000, 1000000, 10000000, 100000000]
+  seeds: [42, 123, 256, 314, 512, 628, 729, 841, 953, 1024]
+  num_runs: 10
+  warmup_runs: 3
+  cache_mode: warm

@@ -1,0 +1,10 @@
+dataset:
+  id: wiki
+  name: Wikipedia Edit Timestamps
+  key_type: uint64
+  cdf_type: stepped
+  distribution:
+    cv: 0.44
+    skewness: 0.5
+    gap_autocorrelation: 0.15
+    kurtosis: 1.8

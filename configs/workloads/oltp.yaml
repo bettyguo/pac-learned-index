@@ -1,0 +1,6 @@
+workload:
+  name: oltp
+  type: point_query
+  num_queries: 10000000
+  distribution: uniform
+  batch_size: 1000

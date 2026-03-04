@@ -1,0 +1,7 @@
+workload:
+  name: mixed
+  type: mixed
+  num_queries: 5000000
+  point_fraction: 0.7
+  range_fraction: 0.3
+  distribution: uniform

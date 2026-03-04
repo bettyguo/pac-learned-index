@@ -1,0 +1,10 @@
+dataset:
+  id: face
+  name: Facebook User IDs
+  key_type: uint64
+  cdf_type: near-uniform
+  distribution:
+    cv: 0.72
+    skewness: 0.8
+    gap_autocorrelation: 0.12
+    kurtosis: 1.5

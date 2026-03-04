@@ -1,0 +1,148 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pac_index"
+dynamic = ["version"]
+description = "PAC learning theory framework for learned database indexes"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+authors = [
+    {name = "Dongxin Guo", email = "bettyguo@connect.hku.hk"},
+]
+keywords = [
+    "learned indexes",
+    "PAC learning",
+    "VC dimension",
+    "sample complexity",
+    "database indexing",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "pyyaml>=6.0.1",
+    "click>=8.1.7",
+    "rich>=13.7.0",
+    "tqdm>=4.66.0",
+    "pandas>=2.1.0",
+    "numpy>=1.24.0,<2.0.0",
+    "scipy>=1.11.0",
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+    "pydantic>=2.5.0",
+    "python-dotenv>=1.0.0",
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+    "pytest-timeout>=2.2.0",
+    "ruff>=0.1.9",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+]
+docs = [
+    "mkdocs>=1.5.3",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.24.0",
+]
+notebooks = [
+    "jupyterlab>=4.0.0",
+    "plotly>=5.18.0",
+]
+ml = [
+    "scikit-learn>=1.3.0",
+]
+all = [
+    "pac_index[dev,docs,notebooks,ml]",
+]
+
+[project.urls]
+Homepage = "https://github.com/bettyguo/pac-learned-index"
+Documentation = "https://github.com/bettyguo/pac-learned-index/docs"
+Repository = "https://github.com/bettyguo/pac-learned-index"
+Issues = "https://github.com/bettyguo/pac-learned-index/issues"
+
+[project.scripts]
+pac_index = "pac_index.core.engine:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pac_index*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "pac_index.__version__.__version__"}
+
+[tool.setuptools.package-data]
+"pac_index" = ["py.typed", "*.yaml", "*.json"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "C4", "SIM", "TCH", "RUF", "PTH"]
+ignore = ["E501", "PLR0913", "PLR2004"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pac_index"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+show_error_codes = true
+pretty = true
+
+[[tool.mypy.overrides]]
+module = ["scipy.*", "numpy.*", "pandas.*", "matplotlib.*", "seaborn.*",
+          "psutil.*", "sklearn.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = ["-v", "--strict-markers", "-ra", "--cov=src", "--cov-report=term-missing",
+           "--cov-report=xml", "--cov-fail-under=80"]
+markers = [
+    "slow: marks tests as slow (require large datasets)",
+    "unit: marks unit tests",
+    "integration: marks integration tests",
+    "requires_data: marks tests requiring benchmark data",
+]
+timeout = 300
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "def __repr__", "raise NotImplementedError",
+                 "if TYPE_CHECKING:", "if __name__ == .__main__.:", "@abstractmethod"]
+fail_under = 80
+show_missing = true

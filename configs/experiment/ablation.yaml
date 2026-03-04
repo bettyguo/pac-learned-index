@@ -1,0 +1,14 @@
+experiment:
+  name: ablation
+  description: Analyze contribution of distribution-dependent refinements
+  datasets: [amzn, face, osm, wiki]
+  components:
+    - {name: baseline_vc, description: Distribution-free VC bounds only}
+    - {name: cv_refinement, description: Add CV-based distribution-dependent refinement}
+    - {name: correlation_correction, description: Add gap autocorrelation correction}
+    - {name: full_framework, description: Complete PAC-Index framework}
+  indexes:
+    - {name: pgm, error_bounds: [32, 64, 128]}
+  seeds: [42, 123, 256, 314, 512]
+  num_runs: 5
+  warmup_runs: 3
