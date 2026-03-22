@@ -136,13 +136,13 @@ pac_index/
 │   ├── datasets/            # Per-dataset configs with distribution properties
 │   ├── experiment/          # Experiment-specific configs
 │   └── workloads/           # Benchmark workload definitions
-├── src/pac_index/           # Core package source
+├── src/                     # Core package source
 │   ├── core/                # Engine, config, pipeline
 │   ├── evaluation/          # Metrics, statistics, visualization
 │   ├── storage/             # Index structures and data management
 │   ├── query/               # Query processing
 │   ├── workload/            # Workload generation and benchmarking
-│   └── utils/               # Reproducibility, I/O, logging
+│   └── utils/               # I/O, logging
 ├── tests/                   # Test suite
 ├── run_system.py            # Main analysis entry point
 ├── run_experiment.py        # Experiment runner
@@ -169,51 +169,3 @@ All experiments were conducted on:
 | osm | 200M | uint64 | erratic | 1.85 |
 | wiki | 200M | uint64 | stepped | 0.44 |
 
-### Running Individual Experiments
-
-```bash
-# Main comparison (all indexes, all datasets)
-make run-main
-
-# Scalability study
-make run-scalability
-
-# Ablation study
-make run-ablation
-
-# Collect and analyze results
-make eval
-
-```
-
-## Testing
-
-```bash
-# Run all tests
-make test
-
-# Fast tests only (no data dependencies)
-make test-fast
-
-# With coverage report
-make test-cov
-
-# Full quality checks (lint + typecheck + test)
-make quality
-```
-
-## Development
-
-```bash
-# Install with dev dependencies
-make install-dev
-
-# Format code
-make format
-
-# Run linter
-make lint
-
-# Type checking
-make typecheck
-```
