@@ -160,12 +160,3 @@ All experiments were conducted on:
 - **Compiler**: GCC 11.4 with C++17, -O3 optimization
 - **Seeds**: 42, 123, 256, 314, 512, 628, 729, 841, 953, 1024
 
-### Datasets (SOSD Benchmark)
-
-| Dataset | Size | Key Type | CDF Type | CV |
-|:--------|-----:|:---------|:---------|---:|
-| amzn | 200M | uint64 | smooth | 0.31 |
-| face | 200M | uint64 | near-uniform | 0.72 |
-| osm | 200M | uint64 | erratic | 1.85 |
-| wiki | 200M | uint64 | stepped | 0.44 |
-
